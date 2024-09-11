@@ -83,7 +83,8 @@
                      :as "submitter")
              (designation-object :via ,(s-prefix "oe:dos_handeltPrimairOver")
                                  :as "primary-subject")
-             )
+  :has-many `((contact-point :via ,(s-prefix "schema:contactPoint")
+                             :as "contact-points"))
   :features '(include-uri)
   :resource-base (s-url "http://data.lblod.info/id/cases/")
   :on-path "cases"
@@ -92,7 +93,10 @@
 (define-resource designation-object ()
   :class (s-prefix "oe:Aanduidingsobject")
   :has-one `((address-representation :via ,(s-prefix "locn:address")
-                                     :as "address"))
+                                     :as "address")
+             (location-parcel :via ,(s-prefix "ext:parcel") ;; TODO: proper predicate
+                              :as "parcel")
+             )
   :features '(include-uri)
   :resource-base (s-url "http://data.lblod.info/id/designation-objects/")
   :on-path "designation-objects"

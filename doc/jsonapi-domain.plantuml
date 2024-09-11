@@ -9,6 +9,7 @@ class "identifiers"
 "identifiers" : identifier
 class "designation-objects"
 "designation-objects" --> "1" "address-representations" : address > 
+"designation-objects" --> "1" "location-parcels" : parcel > 
 class "postal-items"
 "postal-items" : body
 class "addresses"
@@ -28,6 +29,7 @@ class "cases"
 "cases" --> "1" "postal-items" : started-by > 
 "cases" --> "1" "persons" : submitter > 
 "cases" --> "1" "designation-objects" : primary-subject > 
+"cases" --> "*" "contact-points" : contact-points > 
 class "contact-points"
 "contact-points" : name
 "contact-points" : email

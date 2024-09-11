@@ -118,9 +118,9 @@ schema:telephone rdf:type owl:DatatypeProperty;
 
 
 schema:contactPoint rdf:type owl:ObjectProperty;
-  rdfs:comment "Names are contact-points.";
+  rdfs:comment "Names are contact-points, contact-points.";
   rdfs:label "contact-points";
-  rdfs:domain person:Person;
+  rdfs:domain _:union0;
   rdfs:range schema:ContactPoint.
 persoon:registratie rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
   rdfs:comment "Names are identifier.";
@@ -130,8 +130,13 @@ persoon:registratie rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
 locn:address rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
   rdfs:comment "Names are address, address.";
   rdfs:label "address";
-  rdfs:domain _:union0;
+  rdfs:domain _:union1;
   rdfs:range locn:Address.
+ext:parcel rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
+  rdfs:comment "Names are parcel.";
+  rdfs:label "parcel";
+  rdfs:domain oe:Aanduidingsobject;
+  rdfs:range oe:LocatieElementPerceel.
 adres:verwijstNaar rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
   rdfs:comment "Names are references, - referenced-by.";
   rdfs:label "references";
@@ -155,5 +160,7 @@ oe:dos_handeltPrimairOver rdf:type owl:InverseFunctionalProperty, owl:ObjectProp
 
 
 _:union0 rdf:type owl:Class;
+  owl:unionOf (oe:Dossier person:Person).
+_:union1 rdf:type owl:Class;
   owl:unionOf (oe:Aanduidingsobject schema:ContactPoint).
 

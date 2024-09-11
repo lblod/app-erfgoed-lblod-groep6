@@ -117,8 +117,13 @@ schema:telephone rdf:type owl:DatatypeProperty;
   rdfs:domain schema:ContactPoint.
 
 
-schema:contactPoint rdf:type owl:ObjectProperty;
-  rdfs:comment "";
+ext:local_id_1 rdf:type owl:ObjectProperty;
+  rdfs:comment "Original relationship is schema:contactPoint";
+  rdfs:label "contact-points";
+  rdfs:domain oe:Dossier;
+  rdfs:range schema:ContactPoint.
+ext:local_id_2 rdf:type owl:ObjectProperty;
+  rdfs:comment "Original relationship is schema:contactPoint";
   rdfs:label "contact-points";
   rdfs:domain person:Person;
   rdfs:range schema:ContactPoint.
@@ -127,16 +132,21 @@ persoon:registratie rdf:type owl:ObjectProperty;
   rdfs:label "identifier";
   rdfs:domain person:Person;
   rdfs:range adms:Identifier.
-ext:local_id_1 rdf:type owl:ObjectProperty;
+ext:local_id_3 rdf:type owl:ObjectProperty;
   rdfs:comment "Original relationship is locn:address";
   rdfs:label "address";
   rdfs:domain schema:ContactPoint;
   rdfs:range locn:Address.
-ext:local_id_2 rdf:type owl:ObjectProperty;
+ext:local_id_4 rdf:type owl:ObjectProperty;
   rdfs:comment "Original relationship is locn:address";
   rdfs:label "address";
   rdfs:domain oe:Aanduidingsobject;
   rdfs:range locn:Address.
+ext:parcel rdf:type owl:ObjectProperty;
+  rdfs:comment "";
+  rdfs:label "parcel";
+  rdfs:domain oe:Aanduidingsobject;
+  rdfs:range oe:LocatieElementPerceel.
 adres:verwijstNaar rdf:type owl:ObjectProperty;
   rdfs:comment "";
   rdfs:label "references";
