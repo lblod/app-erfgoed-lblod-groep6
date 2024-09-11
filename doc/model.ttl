@@ -1,4 +1,6 @@
 @prefix cms: <http://mu.semte.ch/vocabulary/cms/>.
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix oe: <https://id.erfgoed.net/vocab/ontology#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix persoon: <https://data.vlaanderen.be/ns/persoon#>.
 @prefix locn: <http://www.w3.org/ns/locn#>.
@@ -23,12 +25,18 @@ person:Person rdf:type owl:Class;
   rdfs:label "person".
 adms:Identifier rdf:type owl:Class;
   rdfs:label "identifier".
+oe:Aanduidingsobject rdf:type owl:Class;
+  rdfs:label "designation-object".
+oe:Poststuk rdf:type owl:Class;
+  rdfs:label "postal-item".
 adres:Adres rdf:type owl:Class;
   rdfs:label "address".
 oe:LocatieElementPerceel rdf:type owl:Class;
   rdfs:label "location-parcel".
 locn:Address rdf:type owl:Class;
   rdfs:label "address-representation".
+oe:Dossier rdf:type owl:Class;
+  rdfs:label "case".
 schema:ContactPoint rdf:type owl:Class;
   rdfs:label "contact-point".
 
@@ -47,6 +55,11 @@ skos:notation rdf:type owl:DatatypeProperty;
   rdfs:label "identifier";
   rdfs:range rdfs:Literal;
   rdfs:domain adms:Identifier.
+rdf:value rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string";
+  rdfs:label "body";
+  rdfs:range rdfs:Literal;
+  rdfs:domain oe:Poststuk.
 ext:cadastralDepartment rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is string";
   rdfs:label "cadastral-department";
@@ -82,6 +95,11 @@ adres:Adresvoorstelling.busnummer rdf:type owl:DatatypeProperty;
   rdfs:label "bus-number";
   rdfs:range rdfs:Literal;
   rdfs:domain locn:Address.
+dct:created rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is datetime";
+  rdfs:label "created";
+  rdfs:range rdfs:Literal;
+  rdfs:domain oe:Dossier.
 foaf:name rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is string";
   rdfs:label "name";
@@ -109,16 +127,33 @@ persoon:registratie rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
   rdfs:label "identifier";
   rdfs:domain person:Person;
   rdfs:range adms:Identifier.
+locn:address rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
+  rdfs:comment "Names are address, address.";
+  rdfs:label "address";
+  rdfs:domain _:union0;
+  rdfs:range locn:Address.
 adres:verwijstNaar rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
   rdfs:comment "Names are references, - referenced-by.";
   rdfs:label "references";
   rdfs:domain locn:Address;
   rdfs:range adres:Adres.
-locn:address rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
-  rdfs:comment "Names are address.";
-  rdfs:label "address";
-  rdfs:domain schema:ContactPoint;
-  rdfs:range locn:Address.
+oe:dos_werdOpgestartDoorPoststuk rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
+  rdfs:comment "Names are started-by.";
+  rdfs:label "started-by";
+  rdfs:domain oe:Dossier;
+  rdfs:range oe:Poststuk.
+oe:dos_werdAangevraagdDoor rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
+  rdfs:comment "Names are submitter.";
+  rdfs:label "submitter";
+  rdfs:domain oe:Dossier;
+  rdfs:range person:Person.
+oe:dos_handeltPrimairOver rdf:type owl:InverseFunctionalProperty, owl:ObjectProperty;
+  rdfs:comment "Names are primary-subject.";
+  rdfs:label "primary-subject";
+  rdfs:domain oe:Dossier;
+  rdfs:range oe:Aanduidingsobject.
 
 
+_:union0 rdf:type owl:Class;
+  owl:unionOf (oe:Aanduidingsobject schema:ContactPoint).
 

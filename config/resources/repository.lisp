@@ -38,3 +38,5 @@
 (add-prefix "locn" "http://www.w3.org/ns/locn#")
 (add-prefix "persoon" "https://data.vlaanderen.be/ns/persoon#")
 (add-prefix "foaf" "http://xmlns.com/foaf/0.1/")
+(add-prefix "oe" "https://id.erfgoed.net/vocab/ontology#")
+(add-prefix "dct" "http://purl.org/dc/terms/")

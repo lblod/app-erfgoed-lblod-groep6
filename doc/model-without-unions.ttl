@@ -1,4 +1,6 @@
 @prefix cms: <http://mu.semte.ch/vocabulary/cms/>.
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix oe: <https://id.erfgoed.net/vocab/ontology#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix persoon: <https://data.vlaanderen.be/ns/persoon#>.
 @prefix locn: <http://www.w3.org/ns/locn#>.
@@ -23,12 +25,18 @@ person:Person rdf:type owl:Class;
   rdfs:label "person".
 adms:Identifier rdf:type owl:Class;
   rdfs:label "identifier".
+oe:Aanduidingsobject rdf:type owl:Class;
+  rdfs:label "designation-object".
+oe:Poststuk rdf:type owl:Class;
+  rdfs:label "postal-item".
 adres:Adres rdf:type owl:Class;
   rdfs:label "address".
 oe:LocatieElementPerceel rdf:type owl:Class;
   rdfs:label "location-parcel".
 locn:Address rdf:type owl:Class;
   rdfs:label "address-representation".
+oe:Dossier rdf:type owl:Class;
+  rdfs:label "case".
 schema:ContactPoint rdf:type owl:Class;
   rdfs:label "contact-point".
 
@@ -47,6 +55,11 @@ skos:notation rdf:type owl:DatatypeProperty;
   rdfs:label "identifier";
   rdfs:range rdfs:Literal;
   rdfs:domain adms:Identifier.
+rdf:value rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string.  Original predicate is rdf:value.";
+  rdfs:label "body";
+  rdfs:range rdfs:Literal;
+  rdfs:domain oe:Poststuk.
 ext:cadastralDepartment rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is string.  Original predicate is ext:cadastralDepartment.";
   rdfs:label "cadastral-department";
@@ -82,6 +95,11 @@ adres:Adresvoorstelling.busnummer rdf:type owl:DatatypeProperty;
   rdfs:label "bus-number";
   rdfs:range rdfs:Literal;
   rdfs:domain locn:Address.
+dct:created rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is datetime.  Original predicate is dct:created.";
+  rdfs:label "created";
+  rdfs:range rdfs:Literal;
+  rdfs:domain oe:Dossier.
 foaf:name rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is string.  Original predicate is foaf:name.";
   rdfs:label "name";
@@ -109,16 +127,36 @@ persoon:registratie rdf:type owl:ObjectProperty;
   rdfs:label "identifier";
   rdfs:domain person:Person;
   rdfs:range adms:Identifier.
+ext:local_id_1 rdf:type owl:ObjectProperty;
+  rdfs:comment "Original relationship is locn:address";
+  rdfs:label "address";
+  rdfs:domain schema:ContactPoint;
+  rdfs:range locn:Address.
+ext:local_id_2 rdf:type owl:ObjectProperty;
+  rdfs:comment "Original relationship is locn:address";
+  rdfs:label "address";
+  rdfs:domain oe:Aanduidingsobject;
+  rdfs:range locn:Address.
 adres:verwijstNaar rdf:type owl:ObjectProperty;
   rdfs:comment "";
   rdfs:label "references";
   rdfs:domain locn:Address;
   rdfs:range adres:Adres.
-locn:address rdf:type owl:ObjectProperty;
+oe:dos_werdOpgestartDoorPoststuk rdf:type owl:ObjectProperty;
   rdfs:comment "";
-  rdfs:label "address";
-  rdfs:domain schema:ContactPoint;
-  rdfs:range locn:Address.
+  rdfs:label "started-by";
+  rdfs:domain oe:Dossier;
+  rdfs:range oe:Poststuk.
+oe:dos_werdAangevraagdDoor rdf:type owl:ObjectProperty;
+  rdfs:comment "";
+  rdfs:label "submitter";
+  rdfs:domain oe:Dossier;
+  rdfs:range person:Person.
+oe:dos_handeltPrimairOver rdf:type owl:ObjectProperty;
+  rdfs:comment "";
+  rdfs:label "primary-subject";
+  rdfs:domain oe:Dossier;
+  rdfs:range oe:Aanduidingsobject.
 
 
 

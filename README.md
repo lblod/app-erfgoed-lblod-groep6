@@ -1,6 +1,9 @@
-# mu-project
+# Semantic@YourFingertips hackathon - groep 6 app
 
-Bootstrap a mu.semte.ch microservices environment in three easy steps.
+This repository includes an app repository for the use cases of the hackathon. 
+
+## model
+[uml overview of the model used in the app](doc/jsonapi-domain.svg)
 
 ## Quickstart an mu-project
 

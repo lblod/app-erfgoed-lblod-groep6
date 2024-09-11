@@ -7,6 +7,10 @@ class "persons"
 "persons" --> "*" "contact-points" : contact-points > 
 class "identifiers"
 "identifiers" : identifier
+class "designation-objects"
+"designation-objects" --> "1" "address-representations" : address > 
+class "postal-items"
+"postal-items" : body
 class "addresses"
 "addresses" --> "*" "address-representations" : referenced-by > 
 class "location-parcels"
@@ -19,6 +23,11 @@ class "address-representations"
 "address-representations" : postal-code
 "address-representations" : bus-number
 "address-representations" --> "1" "addresses" : references > 
+class "cases"
+"cases" : created
+"cases" --> "1" "postal-items" : started-by > 
+"cases" --> "1" "persons" : submitter > 
+"cases" --> "1" "designation-objects" : primary-subject > 
 class "contact-points"
 "contact-points" : name
 "contact-points" : email
