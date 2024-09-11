@@ -20,7 +20,7 @@
 
 (define-resource identifier ()
   :class (s-prefix "adms:Identifier")
-  :properties `((:identificator :string ,(s-prefix "skos:notation"))) ;; TODO: should have a specific type
+  :properties `((:identificator :string ,(s-prefix "skos:notation")))
   :resource-base (s-url "http://data.lblod.info/id/identifiers/")
   :features '(include-uri)
   :on-path "identifiers")
@@ -64,7 +64,7 @@
 
 (define-resource location-parcel ()
   :class (s-prefix "oe:LocatieElementPerceel")
-  :properties ((:cadastral-department :string ,(s-prefix "ext:cadastralDepartment"))
+  :properties `((:cadastral-department :string ,(s-prefix "ext:cadastralDepartment"))
                (:section :string ,(s-prefix "ext:cadastralSection"))
                (:number :string ,(s-prefix "ext:cadastralNumber")))
   :features '(include-uri)
