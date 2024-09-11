@@ -34,7 +34,6 @@
   :features '(include-uri)
   :on-path "addresses")
 
-;; TODO onroerend goed name and kadastrale gegevens
 (define-resource address-representation ()
   :class (s-prefix "locn:Address")
   :properties `((:municipality-name :string ,(s-prefix "adres:gemeentenaam"))
@@ -62,6 +61,17 @@
   :features '(include-uri)
   :resource-base (s-url "http://data.lblod.info/id/contact-points/")
   :on-path "contact-points")
+
+(define-resource location-parcel ()
+  :class (s-prefix "oe:LocatieElementPerceel")
+  :properties ((:cadastral-department :string ,(s-prefix "ext:cadastralDepartment"))
+               (:section :string ,(s-prefix "ext:cadastralSection"))
+               (:number :string ,(s-prefix "ext:cadastralNumber")))
+  :features '(include-uri)
+  :resource-base (s-url "http://data.lblod.info/id/location-parcels/")
+  :on-path "location-parcels"
+  )
+;; TODO the submission itself and is links to other entities
 
 ;; reading in the domain.json
 ;(read-domain-file "domain.json")

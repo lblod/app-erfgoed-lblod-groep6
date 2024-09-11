@@ -31,6 +31,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://resource/identifiers/"
   end
 
+  match "/location-parcels/*path", @json do
+    Proxy.forward conn, path, "http://resource/location-parcels/"
+  end
+
   #
   # Run `docker-compose restart dispatcher` after updating
   # this file.
