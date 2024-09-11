@@ -1,0 +1,27 @@
+@startuml
+set namespaceSeparator none
+class "persons"
+"persons" : last-name
+"persons" : used-first-name
+"persons" --> "1" "identifiers" : identifier > 
+"persons" --> "*" "contact-points" : contact-points > 
+class "identifiers"
+"identifiers" : identifier
+class "addresses"
+"addresses" --> "*" "address-representations" : referenced-by > 
+class "location-parcels"
+"location-parcels" : cadastral-department
+"location-parcels" : section
+"location-parcels" : number
+class "address-representations"
+"address-representations" : municipality-name
+"address-representations" : street-name
+"address-representations" : postal-code
+"address-representations" : bus-number
+"address-representations" --> "1" "addresses" : references > 
+class "contact-points"
+"contact-points" : name
+"contact-points" : email
+"contact-points" : telephone
+"contact-points" --> "1" "address-representations" : address > 
+@enduml
