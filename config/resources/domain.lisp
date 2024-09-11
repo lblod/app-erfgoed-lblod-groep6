@@ -20,7 +20,7 @@
 
 (define-resource identifier ()
   :class (s-prefix "adms:Identifier")
-  :properties `((:identificator :string ,(s-prefix "skos:notation")))
+  :properties `((:identifier :string ,(s-prefix "skos:notation")))
   :resource-base (s-url "http://data.lblod.info/id/identifiers/")
   :features '(include-uri)
   :on-path "identifiers")
