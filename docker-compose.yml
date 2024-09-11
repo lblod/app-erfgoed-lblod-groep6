@@ -14,9 +14,9 @@ services:
       - resource:resource
     volumes:
       - ./config/dispatcher:/config
-  database:
     restart: always
 
+  triplestore:
     image: redpencil/virtuoso:1.2.0-rc.1
     environment:
       SPARQL_UPDATE: "true"
