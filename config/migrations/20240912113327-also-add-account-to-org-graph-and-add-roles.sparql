@@ -1,0 +1,25 @@
+PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mu:<http://mu.semte.ch/vocabularies/core/>
+PREFIX ext:<http://mu.semte.ch/vocabularies/ext/>
+PREFIX bestuurseenheidscode: <http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/>
+PREFIX dct: <http://purl.org/dc/terms/>
+INSERT {
+  GRAPH <http://mu.semte.ch/graphs/public> {
+      ?account ext:sessionRole "erfgoed-beheerder".
+  }
+  GRAPH ?g {
+    ?account ext:sessionRole "erfgoed-beheerder".
+  }
+}
+WHERE {
+     ?bestuurseenheid a besluit:Bestuurseenheid;
+     mu:uuid ?id;
+     skos:prefLabel ?naam.
+     BIND(MD5(?naam) as ?uuidPersoon)
+     BIND(MD5(CONCAT(?naam,"ACCOUNT")) as ?uuidAccount)
+     BIND(IRI(CONCAT("http://data.lblod.info/id/persoon/", ?uuidPersoon)) AS ?persoon)
+     BIND(IRI(CONCAT("http://data.lblod.info/id/account/", ?uuidAccount)) AS ?account)
+     BIND(IRI(CONCAT("http://mu.semte.ch/graphs/organizations/", ?id)) AS ?g)
+}
