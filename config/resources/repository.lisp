@@ -40,3 +40,4 @@
 (add-prefix "foaf" "http://xmlns.com/foaf/0.1/")
 (add-prefix "oe" "https://id.erfgoed.net/vocab/ontology#")
 (add-prefix "dct" "http://purl.org/dc/terms/")
+(add-prefix "besluit" "http://data.vlaanderen.be/ns/besluit#")
