@@ -25,7 +25,7 @@ g.bind("objecten", objecten)
 g.bind("locn", locn)
 g.bind("adres", adres)
 g.bind("oe", oe)
-g.bind("SDO", SDO)
+g.bind("sdo", SDO)
 
 for index, row in df.iterrows():
     # Create a unique IRI for each row based on the 'id' column
@@ -33,12 +33,25 @@ for index, row in df.iterrows():
     # Add the triples
     predicate = generiek.lokaleIdentificator
     g.add((subject, RDF.type, oe.Aanduidingsobject))
-    g.add((subject, predicate, Literal(row['id'])))    
-    g.add((subject, SDO.name, Literal(row['naam'])))
-    g.add((subject, locn.fullAddress, Literal(row['locatie'])))
-    g.add((subject, adres.Gemeentenaam, Literal(row['gemeente'])))
-    g.add((subject, locn.adminUnitL2, Literal(row['provincie'])))
-    g.add((subject, SDO.keywords, Literal(row['typologie'])))
+    
+    if pd.notna(row.get('id')) and str(row['id']).strip():
+        g.add((subject, predicate, Literal(row['id'])))    
+        
+    if pd.notna(row.get('naam')) and str(row['naam']).strip():
+        g.add((subject, SDO.name, Literal(row['naam'])))
+        
+    if pd.notna(row.get('locatie')) and str(row['locatie']).strip():
+        g.add((subject, locn.fullAddress, Literal(row['locatie'])))
+        
+    if pd.notna(row.get('gemeente')) and str(row['gemeente']).strip():
+        g.add((subject, adres.Gemeentenaam, Literal(row['gemeente'])))
+        
+    if pd.notna(row.get('provincie')) and str(row['provincie']).strip():
+        g.add((subject, locn.adminUnitL2, Literal(row['provincie'])))
+    
+    if pd.notna(row.get('typologie')) and str(row['typologie']).strip():
+        g.add((subject, SDO.keywords, Literal(row['typologie'])))
+    
         
 # Serialize the graph to Turtle format and save it
 output_file = 'output.ttl'
