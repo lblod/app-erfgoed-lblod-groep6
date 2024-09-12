@@ -2,14 +2,49 @@ defmodule Dispatcher do
   use Matcher
   define_accept_types [
     html: [ "text/html", "application/xhtml+html" ],
-    json: [ "application/json", "application/vnd.api+json" ]
+    json: [ "application/json", "application/vnd.api+json" ],
+    sparql: [ "application/sparql-results+json" ],
+    any: [ "*/*" ]
   ]
 
   @any %{}
   @json %{ accept: %{ json: true } }
   @html %{ accept: %{ html: true } }
 
-  define_layers [ :static, :services, :fall_back, :not_found ]
+  define_layers [ :static, :sparql, :services, :frontend_fallback, :resources, :not_found ]
+
+  ###############
+  # STATIC
+  ###############
+
+  # self-service
+  match "/index.html", %{ layer: :static } do
+    forward conn, [], "http://frontend/index.html"
+  end
+
+  get "/assets/*path",  %{ layer: :static } do
+    forward conn, path, "http://frontend/assets/"
+  end
+
+  get "/@appuniversum/*path", %{ layer: :static } do
+    forward conn, path, "http://frontend/@appuniversum/"
+  end
+
+  ###############
+  # SPARQL
+  ###############
+
+  match "/sparql", %{ layer: :sparql, accept: %{ sparql: true } } do
+    forward conn, [], "http://database:8890/sparql"
+  end
+
+  match "/sparql", %{ layer: :static, accept: %{ html: true } } do
+    forward conn, [], "http://yasgui/"
+  end
+
+  ###############
+  # RESOURCES
+  ###############
 
   match "/mock/sessions/*path", @json do
     Proxy.forward conn, path, "http://mocklogin/sessions/"
