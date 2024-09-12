@@ -17,6 +17,9 @@ INSERT {
     ?account a foaf:OnlineAccount;
             mu:uuid ?uuidAccount;
             foaf:accountServiceHomepage <https://github.com/lblod/mock-login-service>.
+    <http://lblod.data.gift/groups/admins>
+            a foaf:Group ;
+            foaf:member ?persoon .
   }
 }
 WHERE {
