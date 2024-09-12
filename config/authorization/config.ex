@@ -3,27 +3,78 @@ alias Acl.GraphSpec.Constraint.Resource, as: ResourceConstraint
 alias Acl.GraphSpec, as: GraphSpec
 alias Acl.GroupSpec, as: GroupSpec
 alias Acl.GroupSpec.GraphCleanup, as: GraphCleanup
+alias Acl.Accessibility.ByQuery, as: AccessByQuery
+alias Acl.GraphSpec.Constraint.Resource.AllPredicates, as: AllPredicates
+alias Acl.GraphSpec.Constraint.Resource.NoPredicates, as: NoPredicates
+alias Acl.GraphSpec.Constraint.ResourceFormat, as: ResourceFormatConstraint
 
 defmodule Acl.UserGroups.Config do
+
+  defp is_admin() do
+    %AccessByQuery{
+      vars: ["bestuurseenheidUUID"],
+      query: "
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+        PREFIX muAccount: <http://mu.semte.ch/vocabularies/account/>
+        PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+
+        SELECT DISTINCT ?bestuurseenheidUUID WHERE {
+          <SESSION_ID> muAccount:account ?onlineAccount .
+
+          ?onlineAccount a foaf:OnlineAccount .
+
+          ?agent
+            a foaf:Person ;
+            foaf:account ?onlineAccount .
+
+          <http://lblod.data.gift/groups/admins>
+            a foaf:Group ;
+            foaf:member ?agent .
+
+          ?bestuurseenheid
+            foaf:member ?agent ;
+            mu:uuid ?bestuurseenheidUUID .
+        }"
+      }
+  end
+
+
   def user_groups do
-    # These elements are walked from top to bottom.  Each of them may
-    # alter the quads to which the current query applies.  Quads are
-    # represented in three sections: current_source_quads,
-    # removed_source_quads, new_quads.  The quads may be calculated in
-    # many ways.  The useage of a GroupSpec and GraphCleanup are
-    # common.
     [
+      # // Admin access
+      # Only admins can see personal data
+      %GroupSpec{
+        name: "admin",
+        useage: [:write, :read_for_write, :read],
+        access: is_admin(),
+        graphs: [
+          %GraphSpec{
+            graph: "http://data.lblod/graphs/admin/",
+            constraint: %ResourceConstraint{
+              resource_types: [
+                ""
+              ],
+              predicates: %AllPredicates{}
+            }
+          }
+        ]
+      },
+
       # // PUBLIC
+      # All other data is publicly available
       %GroupSpec{
         name: "public",
         useage: [:read],
         access: %AlwaysAccessible{},
-        graphs: [ %GraphSpec{
-                    graph: "http://mu.semte.ch/graphs/public",
-                    constraint: %ResourceConstraint{
-                      resource_types: [
-                      ]
-                    } } ] },
+        graphs: [
+          %GraphSpec{
+            graph: "http://mu.semte.ch/graphs/public",
+            constraint: %ResourceConstraint{
+              resource_types: []
+            }
+          }
+        ]
+      },
 
       # // CLEANUP
       #
