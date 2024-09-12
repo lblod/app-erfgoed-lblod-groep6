@@ -6,3 +6,7 @@
 
 docker-compose.override.yml
 
+.env
+docker-compose.override.yaml
+config/migrations/local
+config/migrations/local
