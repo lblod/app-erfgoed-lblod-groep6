@@ -10,10 +10,21 @@ class "identifiers"
 class "designation-objects"
 "designation-objects" --> "1" "address-representations" : address > 
 "designation-objects" --> "1" "location-parcels" : parcel > 
+class "users"
+"users" : first-name
+"users" : last-name
+"users" --> "1" "accounts" : account > 
+"users" --> "1" "admin-units" : admin-unit > 
 class "postal-items"
 "postal-items" : body
+class "accounts"
+"accounts" : provider
+"accounts" : identifier
+"accounts" --> "1" "users" : user > 
 class "addresses"
 "addresses" --> "*" "address-representations" : referenced-by > 
+class "admin-units"
+"admin-units" : name
 class "location-parcels"
 "location-parcels" : cadastral-department
 "location-parcels" : section
@@ -26,6 +37,7 @@ class "address-representations"
 "address-representations" --> "1" "addresses" : references > 
 class "cases"
 "cases" : created
+"cases" --> "1" "admin-units" : admin-unit > 
 "cases" --> "1" "postal-items" : started-by > 
 "cases" --> "1" "persons" : submitter > 
 "cases" --> "1" "designation-objects" : primary-subject > 

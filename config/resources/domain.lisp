@@ -77,6 +77,8 @@
   :properties `(
                 (:created :datetime ,(s-prefix "dct:created")))
   :has-one `(
+             (admin-unit :via ,(s-prefix "oe:dos_heeftAlsOEGemeente")
+                         :as "admin-unit")
              (postal-item :via ,(s-prefix "oe:dos_werdOpgestartDoorPoststuk")
                           :as "started-by")
              (person :via ,(s-prefix "oe:dos_werdAangevraagdDoor")

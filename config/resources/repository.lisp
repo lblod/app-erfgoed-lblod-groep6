@@ -41,3 +41,4 @@
 (add-prefix "oe" "https://id.erfgoed.net/vocab/ontology#")
 (add-prefix "dct" "http://purl.org/dc/terms/")
 (add-prefix "besluit" "http://data.vlaanderen.be/ns/besluit#")
+(add-prefix "skos" "http://www.w3.org/2004/02/skos/core#")
