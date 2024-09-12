@@ -11,7 +11,7 @@ defmodule Dispatcher do
 
   define_layers [ :static, :services, :fall_back, :not_found ]
 
-  match "/sessions/*path" do
+  match "/mock/sessions/*path", @json do
     Proxy.forward conn, path, "http://mocklogin/sessions/"
   end
 

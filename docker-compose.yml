@@ -15,7 +15,7 @@ services:
       - dispatcher:dispatcher
     restart: always
   mocklogin:
-    image: lblod/mock-login-service
+    image: lblod/mock-login-service:0.5.0
   dispatcher:
     image: semtech/mu-dispatcher:2.1.0-beta.2
     links:
