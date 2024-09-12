@@ -83,6 +83,7 @@
                      :as "submitter")
              (designation-object :via ,(s-prefix "oe:dos_handeltPrimairOver")
                                  :as "primary-subject")
+             )
   :has-many `((contact-point :via ,(s-prefix "schema:contactPoint")
                              :as "contact-points"))
   :features '(include-uri)
@@ -111,5 +112,38 @@
   )
 
 
-;; reading in the domain.json
-;(read-domain-file "domain.json")
+(define-resource user ()
+  :class (s-prefix "foaf:Person")
+  :properties `((:first-name :string ,(s-prefix "foaf:firstName"))
+                (:last-name :string ,(s-prefix "foaf:familyName"))
+                )
+  :has-one `((account :via ,(s-prefix "foaf:account")
+                      :as "account")
+             (admin-unit :via ,(s-prefix "foaf:member")
+                         :as "admin-unit"
+                         :inverse t)
+             )
+  :resource-base (s-url "http://data.lblod.info/id/users/")
+  :on-path "users"
+  )
+
+(define-resource account ()
+  :class (s-prefix "foaf:OnlineAccount")
+  :properties `((:provider :string ,(s-prefix "foaf:accountServiceHomepage"))
+                (:identifier :string ,(s-prefix "dct:identifier"))
+                )
+  :has-one `((user :via ,(s-prefix "foaf:account")
+                   :as "user"
+                   :inverse t))
+  :resource-base (s-url "http://data.lblod.info/id/accounts/")
+
+  :on-path "accounts"
+  )
+(define-resource admin-unit ()
+  :class (s-prefix "besluit:Bestuurseenheid")
+  :properties `((:name :string ,(s-prefix "skos:prefLabel")))
+  :resource-base (s-url "http://data.lblod.info/id/bestuurseenheden/")
+  :on-path "admin-units"
+  )
+;; ;; reading in the domain.json
+;; ;(read-domain-file "domain.json")
