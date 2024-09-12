@@ -34,12 +34,14 @@ services:
       - ./data/db:/data
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
     restart: always
+
   migrations:
     image: semtech/mu-migrations-service:0.9.0
     links:
       - triplestore:database
     volumes:
       - ./config/migrations:/data/migrations
+
   database:
     image: semtech/mu-authorization:0.6.0-beta.8
     environment:
@@ -58,5 +60,14 @@ services:
       - database:database
     volumes:
       - ./config/resources:/config
+    restart: always
+
+  login:
+    image: semtech/mu-login-service:3.0.0
+    environment:
+      USERS_GRAPH: "http://mu.semte.ch/graphs/users"
+      SESSIONS_GRAPH: "http://mu.semte.ch/graphs/sessions"
+    labels:
+      - "logging=true"
     restart: always
 
