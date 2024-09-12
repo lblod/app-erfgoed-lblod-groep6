@@ -35,6 +35,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://resource/addresses/"
   end
 
+  match "/adres-search/*path" do
+    forward conn, path, "http://adressenregister"
+  end
+
   match "/address-representations/*path", @json do
     Proxy.forward conn, path, "http://resource/address-representations/"
   end
