@@ -1,4 +1,6 @@
 @prefix cms: <http://mu.semte.ch/vocabulary/cms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix besluit: <http://data.vlaanderen.be/ns/besluit#>.
 @prefix dct: <http://purl.org/dc/terms/>.
 @prefix oe: <https://id.erfgoed.net/vocab/ontology#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
@@ -27,10 +29,16 @@ adms:Identifier rdf:type owl:Class;
   rdfs:label "identifier".
 oe:Aanduidingsobject rdf:type owl:Class;
   rdfs:label "designation-object".
+foaf:Person rdf:type owl:Class;
+  rdfs:label "user".
 oe:Poststuk rdf:type owl:Class;
   rdfs:label "postal-item".
+foaf:OnlineAccount rdf:type owl:Class;
+  rdfs:label "account".
 adres:Adres rdf:type owl:Class;
   rdfs:label "address".
+besluit:Bestuurseenheid rdf:type owl:Class;
+  rdfs:label "admin-unit".
 oe:LocatieElementPerceel rdf:type owl:Class;
   rdfs:label "location-parcel".
 locn:Address rdf:type owl:Class;
@@ -40,7 +48,12 @@ oe:Dossier rdf:type owl:Class;
 schema:ContactPoint rdf:type owl:Class;
   rdfs:label "contact-point".
 
-foaf:familyName rdf:type owl:DatatypeProperty;
+ext:local_id_1 rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string.  Original predicate is foaf:familyName.";
+  rdfs:label "last-name";
+  rdfs:range rdfs:Literal;
+  rdfs:domain foaf:Person.
+ext:local_id_2 rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is string.  Original predicate is foaf:familyName.";
   rdfs:label "last-name";
   rdfs:range rdfs:Literal;
@@ -55,11 +68,31 @@ skos:notation rdf:type owl:DatatypeProperty;
   rdfs:label "identifier";
   rdfs:range rdfs:Literal;
   rdfs:domain adms:Identifier.
+foaf:firstName rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string.  Original predicate is foaf:firstName.";
+  rdfs:label "first-name";
+  rdfs:range rdfs:Literal;
+  rdfs:domain foaf:Person.
 rdf:value rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is string.  Original predicate is rdf:value.";
   rdfs:label "body";
   rdfs:range rdfs:Literal;
   rdfs:domain oe:Poststuk.
+foaf:accountServiceHomepage rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string.  Original predicate is foaf:accountServiceHomepage.";
+  rdfs:label "provider";
+  rdfs:range rdfs:Literal;
+  rdfs:domain foaf:OnlineAccount.
+dct:identifier rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string.  Original predicate is dct:identifier.";
+  rdfs:label "identifier";
+  rdfs:range rdfs:Literal;
+  rdfs:domain foaf:OnlineAccount.
+skos:prefLabel rdf:type owl:DatatypeProperty;
+  rdfs:comment "Resources type is string.  Original predicate is skos:prefLabel.";
+  rdfs:label "name";
+  rdfs:range rdfs:Literal;
+  rdfs:domain besluit:Bestuurseenheid.
 ext:cadastralDepartment rdf:type owl:DatatypeProperty;
   rdfs:comment "Resources type is string.  Original predicate is ext:cadastralDepartment.";
   rdfs:label "cadastral-department";
@@ -117,12 +150,12 @@ schema:telephone rdf:type owl:DatatypeProperty;
   rdfs:domain schema:ContactPoint.
 
 
-ext:local_id_1 rdf:type owl:ObjectProperty;
+ext:local_id_3 rdf:type owl:ObjectProperty;
   rdfs:comment "Original relationship is schema:contactPoint";
   rdfs:label "contact-points";
   rdfs:domain oe:Dossier;
   rdfs:range schema:ContactPoint.
-ext:local_id_2 rdf:type owl:ObjectProperty;
+ext:local_id_4 rdf:type owl:ObjectProperty;
   rdfs:comment "Original relationship is schema:contactPoint";
   rdfs:label "contact-points";
   rdfs:domain person:Person;
@@ -132,12 +165,12 @@ persoon:registratie rdf:type owl:ObjectProperty;
   rdfs:label "identifier";
   rdfs:domain person:Person;
   rdfs:range adms:Identifier.
-ext:local_id_3 rdf:type owl:ObjectProperty;
+ext:local_id_5 rdf:type owl:ObjectProperty;
   rdfs:comment "Original relationship is locn:address";
   rdfs:label "address";
   rdfs:domain schema:ContactPoint;
   rdfs:range locn:Address.
-ext:local_id_4 rdf:type owl:ObjectProperty;
+ext:local_id_6 rdf:type owl:ObjectProperty;
   rdfs:comment "Original relationship is locn:address";
   rdfs:label "address";
   rdfs:domain oe:Aanduidingsobject;
@@ -147,11 +180,26 @@ ext:parcel rdf:type owl:ObjectProperty;
   rdfs:label "parcel";
   rdfs:domain oe:Aanduidingsobject;
   rdfs:range oe:LocatieElementPerceel.
+foaf:account rdf:type owl:ObjectProperty;
+  rdfs:comment "";
+  rdfs:label "account";
+  rdfs:domain foaf:Person;
+  rdfs:range foaf:OnlineAccount.
+foaf:member rdf:type owl:ObjectProperty;
+  rdfs:comment "";
+  rdfs:label "admin-unit";
+  rdfs:domain besluit:Bestuurseenheid;
+  rdfs:range foaf:Person.
 adres:verwijstNaar rdf:type owl:ObjectProperty;
   rdfs:comment "";
   rdfs:label "references";
   rdfs:domain locn:Address;
   rdfs:range adres:Adres.
+oe:dos_heeftAlsOEGemeente rdf:type owl:ObjectProperty;
+  rdfs:comment "";
+  rdfs:label "admin-unit";
+  rdfs:domain oe:Dossier;
+  rdfs:range besluit:Bestuurseenheid.
 oe:dos_werdOpgestartDoorPoststuk rdf:type owl:ObjectProperty;
   rdfs:comment "";
   rdfs:label "started-by";
