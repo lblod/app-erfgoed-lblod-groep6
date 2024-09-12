@@ -34,7 +34,12 @@ services:
       - ./data/db:/data
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
     restart: always
-
+  migrations:
+    image: semtech/mu-migrations-service:0.9.0
+    links:
+      - triplestore:database
+    volumes:
+      - ./config/migrations:/data/migrations
   database:
     image: semtech/mu-authorization:0.6.0-beta.8
     environment:
