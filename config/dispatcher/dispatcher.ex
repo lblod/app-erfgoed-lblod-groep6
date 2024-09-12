@@ -11,6 +11,22 @@ defmodule Dispatcher do
 
   define_layers [ :static, :services, :fall_back, :not_found ]
 
+  match "/sessions/*path" do
+    Proxy.forward conn, path, "http://mocklogin/sessions/"
+  end
+
+  match "/admin-units/*path", @json do
+    Proxy.forward conn, path, "http://resource/admin-units/"
+  end
+
+  match "/accounts/*path", @json do
+    Proxy.forward conn, path, "http://resource/accounts/"
+  end
+
+  match "/users/*path", @json do
+    Proxy.forward conn, path, "http://resource/users/"
+  end
+
   match "/contact-points/*path", @json do
     Proxy.forward conn, path, "http://resource/contact-points/"
   end
