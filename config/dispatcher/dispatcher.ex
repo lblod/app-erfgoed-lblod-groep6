@@ -74,8 +74,8 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://resource/address-representations/"
   end
 
-  match "/persons/*path", @json do
-    Proxy.forward conn, path, "http://resource/persons/"
+  match "/people/*path", @json do
+    Proxy.forward conn, path, "http://resource/people/"
   end
 
   match "/identifiers/*path", @json do

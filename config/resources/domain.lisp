@@ -16,7 +16,7 @@
                             :as "identifier"))
   :resource-base (s-url "http://data.lblod.info/id/persons/")
   :features '(include-uri)
-  :on-path "persons")
+  :on-path "people")
 
 (define-resource identifier ()
   :class (s-prefix "adms:Identifier")
