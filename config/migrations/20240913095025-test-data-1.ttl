@@ -1,0 +1,73 @@
+@prefix persons: <http://data.lblod.info/id/persons/> .
+@prefix identifiers: <http://data.lblod.info/id/identifiers/> .
+@prefix adresses: <http://data.lblod.info/id/addresses/> .
+@prefix addressRepresentations: <http://data.lblod.info/id/address-representations/> .
+@prefix contactPoints: <http://data.lblod.info/id/contact-points/> .
+@prefix locationParcels: <http://data.lblod.info/id/location-parcels/> .
+@prefix objecten: <https://inventaris.onroerenderfgoed.be/aanduidingsobjecten/> .
+@prefix postalItems: <http://data.lblod.info/id/postal-items/> .
+@prefix cases: <http://data.lblod.info/id/cases/> .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix mu: <http://mu.semte.ch/vocabularies/core/> .
+@prefix ext: <http://mu.semte.ch/vocabularies/ext/> .
+@prefix person: <http://www.w3.org/ns/person#> .
+@prefix adres: <https://data.vlaanderen.be/ns/adres#> .
+@prefix schema: <http://schema.org/> .
+@prefix locn: <http://www.w3.org/ns/locn#> .
+@prefix persoon: <https://data.vlaanderen.be/ns/persoon#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix oe: <https://id.erfgoed.net/vocab/ontology#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix besluit: <http://data.vlaanderen.be/ns/besluit#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+
+persons:34e587ee-d54c-477e-8e5f-f84250f84946
+  rdf:type person:Person ;
+  mu:uuid "34e587ee-d54c-477e-8e5f-f84250f84946" ;
+  foaf:familyName "Bibbers" ;
+  persoon:gebruikteVoornaam "Bert" ;
+  persoon:registratie identifiers:f8dec766-9d8f-4559-b1cb-567be7bc6501 ;
+  schema:contactPoint contactPoints:827ec53f-7b66-40ad-8a87-59a3e4d015c3 .
+
+identifiers:f8dec766-9d8f-4559-b1cb-567be7bc6501
+  rdf:type adms:Identifier ;
+  mu:uuid "f8dec766-9d8f-4559-b1cb-567be7bc6501" ;
+  skos:notation "99.09.13-332.45" .
+
+adresses:5539f031-e4c1-4fbb-8c3b-01dbe277031a
+  rdf:type adres:Adres ;
+  mu:uuid "5539f031-e4c1-4fbb-8c3b-01dbe277031a" ;
+  adres:verwijstNaar addressRepresentations:31e35f19-7727-4142-8c43-0f084d62d122 .
+
+addressRepresentations:31e35f19-7727-4142-8c43-0f084d62d122
+  rdf:type locn:Address ;
+  mu:uuid "31e35f19-7727-4142-8c43-0f084d62d122" ;
+  adres:gemeentenaam "Aalter" ;
+  locn:thoroughfare "Markt" ;
+  locn:postCode "9880" ;
+  adres:Adresvoorstelling.busnummer "1" .
+
+contactPoints:827ec53f-7b66-40ad-8a87-59a3e4d015c3
+  rdf:type schema:ContactPoint ;
+  mu:uuid "827ec53f-7b66-40ad-8a87-59a3e4d015c3" ;
+  foaf:name "Bert Bibbers (as contact)" ;
+  schema:email "bert.bibbers@mail.com" ;
+  schema:telephone "+32477895463" .
+
+cases:660cc76c-9474-4e1d-9b6c-281538c50630
+  rdf:type oe:Dossier ;
+  mu:uuid "660cc76c-9474-4e1d-9b6c-281538c50630" ;
+  dct:created "2024-09-13T11:01:00.00Z"^^xsd:dateTime ;
+  oe:dos_heeftAlsOEGemeente <http://data.lblod.info/id/bestuurseenheden/353234a365664e581db5c2f7cc07add2534b47b8e1ab87c821fc6e6365e6bef5> ;
+  oe:dos_werdOpgestartDoorPoststuk postalItems:c1089ab4-01a7-44b4-96be-a9f3d48e290c ;
+  oe:dos_werdAangevraagdDoor persons:34e587ee-d54c-477e-8e5f-f84250f84946 ;
+  oe:dos_handeltPrimairOver objecten:49658 ;
+  schema:contactPoint contactPoints:827ec53f-7b66-40ad-8a87-59a3e4d015c3 .
+
+postalItems:c1089ab4-01a7-44b4-96be-a9f3d48e290c
+  rdf:type oe:Poststuk ;
+  mu:uuid "c1089ab4-01a7-44b4-96be-a9f3d48e290c" ;
+  rdf:value "Renoveren van de bestaande trap." .
