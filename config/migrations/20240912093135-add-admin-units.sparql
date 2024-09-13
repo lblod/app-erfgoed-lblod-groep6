@@ -8,7 +8,7 @@ PREFIX dct: <http://purl.org/dc/terms/>
 INSERT DATA {
   GRAPH <http://mu.semte.ch/graphs/public> {
     <http://data.lblod.info/id/bestuurseenheden/353234a365664e581db5c2f7cc07add2534b47b8e1ab87c821fc6e6365e6bef5> a besluit:Bestuurseenheid;
-    skos:prefLabel "Stad Gent";
+    skos:prefLabel "Stad Aalter";
     mu:uuid  "353234a365664e581db5c2f7cc07add2534b47b8e1ab87c821fc6e6365e6bef5";
     dct:identifier "OVO002067".
     <https://data.vlaanderen.be/id/organisatie/OVO000104> a besluit:Bestuurseenheid;
