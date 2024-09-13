@@ -42,3 +42,4 @@
 (add-prefix "dct" "http://purl.org/dc/terms/")
 (add-prefix "besluit" "http://data.vlaanderen.be/ns/besluit#")
 (add-prefix "skos" "http://www.w3.org/2004/02/skos/core#")
+(add-prefx "adms" "http://www.w3.org/ns/adms#")
