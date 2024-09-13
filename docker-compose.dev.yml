@@ -4,7 +4,7 @@ services:
     ports:
       - "80:80"
 
-  database:
+  triplestore:
     ports:
       - "8890:8890"
 

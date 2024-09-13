@@ -1,0 +1,14 @@
+PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+PREFIX generiek: <https://data.vlaanderen.be/ns/generiek#> 
+PREFIX oe: <https://id.erfgoed.net/vocab/ontology#> 
+INSERT {
+  GRAPH  <http://mu.semte.ch/graphs/public> {
+    ?s mu:uuid ?id
+  }
+}
+WHERE {
+  GRAPH  <http://mu.semte.ch/graphs/public> {
+     ?s a oe:Aanduidingsobject ;
+        generiek:lokaleIdentificator ?id
+  }
+}

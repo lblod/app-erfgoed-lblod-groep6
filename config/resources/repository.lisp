@@ -43,3 +43,5 @@
 (add-prefix "besluit" "http://data.vlaanderen.be/ns/besluit#")
 (add-prefix "skos" "http://www.w3.org/2004/02/skos/core#")
 (add-prefix "adms" "http://www.w3.org/ns/adms#")
+(add-prefix "sdo" "https://schema.org/")
+(add-prefix "generiek" "https://data.vlaanderen.be/ns/generiek#")

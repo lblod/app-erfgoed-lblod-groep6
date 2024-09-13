@@ -95,6 +95,12 @@
 
 (define-resource designation-object ()
   :class (s-prefix "oe:Aanduidingsobject")
+  :properties `(
+                (:full-address :string ,(s-prefix "locn:fullAddress"))
+                (:admin-unit-name :string ,(s-prefix "adres:Gemeentenaam"))
+                (:name :string ,(s-prefix "sdo:name"))
+                (:keywords :string ,(s-prefix "sdo:keyword"))
+                (:identifier :string ,(s-prefix "generiek:lokaleIndentificator")))
   :has-one `((address-representation :via ,(s-prefix "locn:address")
                                      :as "address")
              (location-parcel :via ,(s-prefix "ext:parcel") ;; TODO: proper predicate
