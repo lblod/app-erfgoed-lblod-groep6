@@ -38,10 +38,6 @@ defmodule Dispatcher do
     forward conn, [], "http://database:8890/sparql"
   end
 
-  match "/sparql", %{ layer: :static, accept: %{ html: true } } do
-    forward conn, [], "http://yasgui/"
-  end
-
   ###############
   # RESOURCES
   ###############
