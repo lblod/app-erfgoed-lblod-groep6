@@ -1,0 +1,70 @@
+@prefix adresses: <http://data.lblod.info/id/addresses/> .
+@prefix adresRepresentations: <http://data.lblod.info/id/address-representations/> .
+@prefix adminUnit: <http://data.lblod.info/id/bestuurseenheden/> .
+@prefix cases: <http://data.lblod.info/id/cases/> .
+@prefix contantPoints: <http://data.lblod.info/id/contact-points/> .
+@prefix identifiers: <http://data.lblod.info/id/identifiers/> .
+@prefix objecten: <https://inventaris.onroerenderfgoed.be/aanduidingsobjecten/> .
+@prefix persons: <http://data.lblod.info/id/persons/> .
+@prefix postalItem: <http://data.lblod.info/id/postal-items/> .
+
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix adres: <https://data.vlaanderen.be/ns/adres#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix locn: <http://www.w3.org/ns/locn#> .
+@prefix mu: <http://mu.semte.ch/vocabularies/core/> .
+@prefix oe: <https://id.erfgoed.net/vocab/ontology#> .
+@prefix person: <http://www.w3.org/ns/person#> .
+@prefix persoon: <https://data.vlaanderen.be/ns/persoon#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+
+persons:255bafb7-0b26-462f-a013-35b2618efc85 
+  rdf:type person:Person ;
+  mu:uuid "255bafb7-0b26-462f-a013-35b2618efc85" ;
+  foaf:familyName "Hof" ;
+  persoon:gebruikteVoornaam "Femke" ;
+  persoon:registratie identifiers:909be2c5-e778-466f-91ec-4043bce0312e ;
+  schema:contactPoint contactPoints:aa68612f-2778-4523-a3a9-deec774d9ea9 .
+
+identifiers:909be2c5-e778-466f-91ec-4043bce0312e 
+  rdf:type adms:Identifier ;
+  mu:uuid "909be2c5-e778-466f-91ec-4043bce0312e" ;
+  skos:notation "99.09.13-332.45" .
+
+adresses:6d7752a3-1e0e-48cb-87b2-3ca4dadcdc5b
+  rdf:type adres:Adres ;
+  mu:uuid "6d7752a3-1e0e-48cb-87b2-3ca4dadcdc5b" ;
+  adres:verwijstNaar adresRepresentations:31e35f19-7727-4142-8c43-0f084d62d122 .
+
+
+contactPoints:aa68612f-2778-4523-a3a9-deec774d9ea9 
+  rdf:type schema:contactPoint ;
+  mu:uuid "aa68612f-2778-4523-a3a9-deec774d9ea9" ;
+  foaf:firstName "Femke" ;
+  schema:email "femke.hof@hotmail.nl" ;
+  schena:telephone "0648594320" ;
+  locn:address contactPoints:f5674a49-381c-437e-ae87-8d68d7809539 .
+
+
+cases:30da888a-c1be-4ad8-a2b1-807516418bc2
+  rdf:type oe:Dossier ;
+  mu:uuid "30da888a-c1be-4ad8-a2b1-807516418bc2" ;
+  dct:created adminUnit:6de1f7ea-eaa4-4485-98b1-fc5cfc595b7a ;
+  oe:dos_heeftAlsOEGemeente postalItem:49350dea-8e24-46ae-9fbe-caeb4f572b46 ;
+  oe:dos_werdOpgestartDoorPoststuk person:7b9b956c-122a-4feb-a13b-4076ceec1a27 ;
+  oe:dos_werdAangevraagdDoor objecten:10825 ;
+  schema:contactPerson contactPoint:aa68612f-2778-4523-a3a9-deec774d9ea9 .
+
+postalItem:49350dea-8e24-46ae-9fbe-caeb4f572b46 
+  rdf:type oe:Poststuk ;
+  mu:uuid "49350dea-8e24-46ae-9fbe-caeb4f572b46" ;
+  rdf:value "I want to renovate the roof of my building" .
+
+
+
+
+
