@@ -68,7 +68,7 @@ defmodule Acl.UserGroups.Config do
         access: %AlwaysAccessible{},
         graphs: [
           %GraphSpec{
-            graph: "http://mu.semte.ch/application",
+            graph: "http://mu.semte.ch/graphs/public",
             constraint: %ResourceConstraint{
               resource_types: []
             }
@@ -79,7 +79,7 @@ defmodule Acl.UserGroups.Config do
       # // CLEANUP
       #
       %GraphCleanup{
-        originating_graph: "http://mu.semte.ch/hidden",
+        originating_graph: "http://mu.semte.ch/application",
         useage: [:write],
         name: "clean"
       }
