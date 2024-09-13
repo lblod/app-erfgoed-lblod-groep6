@@ -1,0 +1,19 @@
+PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+PREFIX generiek: <https://data.vlaanderen.be/ns/generiek#> 
+PREFIX oe: <https://id.erfgoed.net/vocab/ontology#> 
+DELETE {
+  GRAPH  <http://mu.semte.ch/graphs/public> {
+    ?s mu:uuid ?id
+  }
+}
+INSERT {
+  GRAPH  <http://mu.semte.ch/graphs/public> {
+    ?s mu:uuid ?strID
+  }
+}
+WHERE {
+  GRAPH  <http://mu.semte.ch/graphs/public> {
+    ?s mu:uuid ?id
+  }
+  BIND(STR(?id) as ?strID)
+}
