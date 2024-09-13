@@ -52,7 +52,9 @@ defmodule Acl.UserGroups.Config do
             graph: "http://data.lblod/graphs/admin/",
             constraint: %ResourceConstraint{
               resource_types: [
-                ""
+                "https://data.vlaanderen.be/ns/persoon#Person",
+                "http://www.w3.org/ns/adms#Identifier",
+                "http://schema.org/ContactPoint"
               ],
               predicates: %AllPredicates{}
             }
