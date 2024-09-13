@@ -55,7 +55,8 @@ contactPoints:827ec53f-7b66-40ad-8a87-59a3e4d015c3
   mu:uuid "827ec53f-7b66-40ad-8a87-59a3e4d015c3" ;
   foaf:name "Bert Bibbers (as contact)" ;
   schema:email "bert.bibbers@mail.com" ;
-  schema:telephone "+32477895463" .
+  schema:telephone "+32477895463" ;
+  locn:address addressRepresentations:31e35f19-7727-4142-8c43-0f084d62d122 .
 
 cases:660cc76c-9474-4e1d-9b6c-281538c50630
   rdf:type oe:Dossier ;
