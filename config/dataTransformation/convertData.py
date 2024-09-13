@@ -4,7 +4,7 @@ from rdflib.namespace import SDO, RDF
 import pandas as pd
 import requests
 import json
-
+from datetime import datetime
 
 df = pd.read_csv("doc/aanduidingsobjecten.csv")
 
@@ -15,6 +15,7 @@ objecten = Namespace("https://inventaris.onroerenderfgoed.be/aanduidingsobjecten
 locn = Namespace("http://www.w3.org/ns/locn#")
 adres = Namespace("https://data.vlaanderen.be/ns/adres#")
 oe = Namespace("https://id.erfgoed.net/vocab/ontology#")
+crm = Namespace("http://www.cidoc-crm.org/cidoc-crm/")
 
 
 # Initialize the graph
@@ -26,6 +27,7 @@ g.bind("locn", locn)
 g.bind("adres", adres)
 g.bind("oe", oe)
 g.bind("sdo", SDO)
+g.bind("crm", crm)
 
 for index, row in df.iterrows():
     # Create a unique IRI for each row based on the 'id' column
@@ -51,48 +53,22 @@ for index, row in df.iterrows():
     
     if pd.notna(row.get('typologie')) and str(row['typologie']).strip():
         g.add((subject, SDO.keywords, Literal(row['typologie'])))
+        
+        
+    if pd.notna(row.get('materiaal')) and str(row['materiaal']).strip():
+        g.add((subject, crm.P45_consists_of, Literal(row['materiaal'])))
     
         
-# Serialize the graph to Turtle format and save it
-output_file = 'output.ttl'
+# # Serialize the graph to Turtle format and save it
+# output_file = 'output.ttl'
+
+# Get the current timestamp and format it
+timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+
+# Use the timestamp in the output file name
+output_file = f'{timestamp}_data.ttl'
+
+
 g.serialize(destination=output_file, format="turtle")
 
 print(f"RDF data has been written to {output_file}")
-
-
-
-
-
-
-
-# def fetch_straatnaam(aanduidingsobject_id):
-    
-#     base_url = "https://inventaris.onroerenderfgoed.be/aanduidingsobjecten/"
-#     url = f"{base_url}{aanduidingsobject_id}"
-#     # print(url)
-#     # # Make the GET request to the API
-#     # response = requests.get(url)
-#     # print(response)
-#     # # Check if the request was successful
-#     # if response.status_code == 200:
-#     #     # data = response.json()  # Parse JSON response
-        
-#     #     json_response = json.loads(response.text)
-#     #     # Assuming 'straat_naam' is part of the response
-#     #     if 'straat_naam' in data:
-#     #         return data['straat_naam']
-#     #     else:
-#     #         return "straat_naam not found in the response"
-#     # else:
-#     #     return f"Error: Received status code {response.status_code}"
-    
-#     # Define the JSON payload
-#     json_payload = {
-#         "prettyPrint": True,
-#     }
-
-#     # Perform the API request using the requests library
-#     headers = {"Content-Type": "application/json"}
-#     response = requests.get(url, headers=headers)
-#     print(response)
-

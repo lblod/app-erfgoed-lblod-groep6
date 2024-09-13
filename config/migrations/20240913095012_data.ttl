@@ -1,4 +1,5 @@
 @prefix adres: <https://data.vlaanderen.be/ns/adres#> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix generiek: <https://data.vlaanderen.be/ns/generiek#> .
 @prefix locn: <http://www.w3.org/ns/locn#> .
 @prefix objecten: <https://inventaris.onroerenderfgoed.be/aanduidingsobjecten/> .
@@ -7108,6 +7109,7 @@ objecten:147506 a oe:Aanduidingsobject ;
     sdo:name "Gebied 7523" .
 
 objecten:14771 a oe:Aanduidingsobject ;
+    crm:P45_consists_of "hout" ;
     locn:adminUnitL2 "Onbepaald" ;
     locn:fullAddress "Onbepaald" ;
     adres:Gemeentenaam "Onbepaald" ;
@@ -7137,6 +7139,7 @@ objecten:148176 a oe:Aanduidingsobject ;
     sdo:name "Gebied 7847" .
 
 objecten:14819 a oe:Aanduidingsobject ;
+    crm:P45_consists_of "staal" ;
     locn:adminUnitL2 "Onbepaald" ;
     locn:fullAddress "Onbepaald" ;
     adres:Gemeentenaam "Onbepaald" ;
@@ -7166,6 +7169,7 @@ objecten:148222 a oe:Aanduidingsobject ;
     sdo:name "Gebied 7837" .
 
 objecten:14830 a oe:Aanduidingsobject ;
+    crm:P45_consists_of "staal" ;
     locn:adminUnitL2 "Oost-Vlaanderen" ;
     locn:fullAddress "Aalst (Oost-Vlaanderen)" ;
     adres:Gemeentenaam "Aalst" ;
@@ -7238,6 +7242,7 @@ objecten:14897 a oe:Aanduidingsobject ;
     sdo:name "Maldegemveld Groen Ursel Knesselare" .
 
 objecten:14969 a oe:Aanduidingsobject ;
+    crm:P45_consists_of "aluminium, staal" ;
     locn:adminUnitL2 "Onbepaald" ;
     locn:fullAddress "Onbepaald" ;
     adres:Gemeentenaam "Onbepaald" ;
@@ -7286,6 +7291,7 @@ objecten:15065 a oe:Aanduidingsobject ;
     sdo:name "Parasoltaxus" .
 
 objecten:1509 a oe:Aanduidingsobject ;
+    crm:P45_consists_of "aluminium, staal" ;
     locn:adminUnitL2 "Onbepaald" ;
     locn:fullAddress "Onbepaald" ;
     adres:Gemeentenaam "Onbepaald" ;
@@ -7389,6 +7395,7 @@ objecten:176175 a oe:Aanduidingsobject ;
     sdo:name "Frietkot" .
 
 objecten:176178 a oe:Aanduidingsobject ;
+    crm:P45_consists_of "staal" ;
     locn:adminUnitL2 "Oost-Vlaanderen" ;
     locn:fullAddress "Aalst (Oost-Vlaanderen)" ;
     adres:Gemeentenaam "Aalst" ;
@@ -7411,6 +7418,7 @@ objecten:177936 a oe:Aanduidingsobject ;
     sdo:name "Gebied 8814" .
 
 objecten:178271 a oe:Aanduidingsobject ;
+    crm:P45_consists_of "staal" ;
     locn:adminUnitL2 "Oost-Vlaanderen" ;
     locn:fullAddress "Aalst (Oost-Vlaanderen)" ;
     adres:Gemeentenaam "Aalst" ;
